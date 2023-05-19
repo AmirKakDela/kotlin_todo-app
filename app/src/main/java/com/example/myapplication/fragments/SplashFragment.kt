@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
+
 class SplashFragment : Fragment() {
 
 
@@ -38,7 +39,6 @@ class SplashFragment : Fragment() {
                 navController.navigate(R.id.action_splashFragment_to_homeFragment)
             else
                 navController.navigate(R.id.action_splashFragment_to_signInFragment)
-
         }, 2000)
     }
 
