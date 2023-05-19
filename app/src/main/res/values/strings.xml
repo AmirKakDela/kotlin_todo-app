@@ -10,4 +10,5 @@
     <string name="sign_up">Регистрация</string>
     <string name="sign_in">Авторизация</string>
     <string name="goToSignup">Нет аккаунта? Зарегистрироваться</string>
+    <string name="goToSignin">Есть аккаунт? Войдите</string>
 </resources>

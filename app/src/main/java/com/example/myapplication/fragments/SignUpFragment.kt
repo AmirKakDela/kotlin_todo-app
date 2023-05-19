@@ -29,6 +29,10 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init(view)
 
+        binding.goToSignin.setOnClickListener {
+            navController.navigate(R.id.action_signUpFragment_to_signInFragment)
+        }
+
         binding.signupBtn.setOnClickListener {
             val email = binding.email.text.toString()
             val pass = binding.password.text.toString()
