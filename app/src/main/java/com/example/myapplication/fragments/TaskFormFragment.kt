@@ -25,19 +25,6 @@ class TaskFormFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var authId: String
 
-    companion object {
-        const val TAG = "TaskFormFragment"
-
-        @JvmStatic
-        fun newInstance(taskId: String, task: String) =
-            TaskFormFragment().apply {
-                arguments = Bundle().apply {
-                    putString("taskId", taskId)
-                    putString("task", task)
-                }
-            }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +36,14 @@ class TaskFormFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init(view)
+
+        val taskId: String = arguments?.getString("taskId").toString()
+        val task: String = arguments?.getString("task").toString()
+
+        if (taskId != "null" && task != "null") {
+            todoData = TodoData(taskId, task)
+            binding.taskTitle.setText(todoData?.task)
+        }
 
         binding.back.setOnClickListener {
             navController.navigate(R.id.action_taskFormFragment_to_homeFragment)
@@ -62,6 +57,8 @@ class TaskFormFragment : Fragment() {
             }
             if (todoData == null) {
                 saveTask(todoTitle, binding.taskTitle)
+            } else {
+//                updateTask()
             }
         }
     }
@@ -74,7 +71,6 @@ class TaskFormFragment : Fragment() {
         navController = Navigation.findNavController(view)
     }
 
-    // todo = todo: Todo
     private fun saveTask(todoTitle: String, todoEdit: TextInputEditText) {
         database
             .push().setValue(todoTitle)
@@ -89,7 +85,7 @@ class TaskFormFragment : Fragment() {
     }
 
     // todo = todo: Todo
-    fun updateTask(todo: String, todoEdit: TextInputEditText) {
+    fun updateTask(todo: TodoData, todoEdit: TextInputEditText) {
         TODO("Not yet implemented")
     }
 }

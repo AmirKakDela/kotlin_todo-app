@@ -107,6 +107,9 @@ class HomeFragment : Fragment(), TaskAdapter.TaskAdapterInterface {
     }
 
     override fun onEditItemClicked(todoData: TodoData, position: Int) {
-        TODO("Not yet implemented")
+        val bundle = Bundle()
+        bundle.putString("task", todoData.task)
+        bundle.putString("taskId", todoData.taskId)
+        navController.navigate(R.id.action_homeFragment_to_taskFormFragment, bundle)
     }
 }

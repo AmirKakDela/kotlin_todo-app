@@ -9,7 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="com.example.myapplication.fragments.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/signInFragment"
         android:name="com.example.myapplication.fragments.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
+        tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -33,7 +33,7 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.myapplication.fragments.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -45,7 +45,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.myapplication.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
@@ -58,7 +58,15 @@
         android:id="@+id/taskFormFragment"
         android:name="com.example.myapplication.fragments.TaskFormFragment"
         android:label="fragment_task_form"
-        tools:layout="@layout/fragment_task_form" >
+        tools:layout="@layout/fragment_task_form">
+        <argument
+            android:name="taskId"
+            android:defaultValue="@null"
+            app:argType="string" />
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="string" />
         <action
             android:id="@+id/action_taskFormFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
