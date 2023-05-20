@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_password_confirm">Enter password confirm</string>
+    <string name="create_account">Create Account</string>
+    <string name="enter">Login</string>
+    <string name="logout">Exit</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="goToSignup">Don`t have account? Sign up</string>
+    <string name="goToSignin">Do you have account? Sign in</string>
+    <string name="create_task">Create task</string>
+    <string name="enter_task_title">Enter task title</string>
+</resources>
