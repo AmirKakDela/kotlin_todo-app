@@ -1,9 +1,9 @@
 package com.example.myapplication.fragments
 
 import android.annotation.SuppressLint
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +11,24 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.utils.adapter.TaskAdapter
 import com.example.myapplication.utils.models.TodoData
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.Locale
 
 class HomeFragment : Fragment(), TaskAdapter.TaskAdapterInterface {
     private val TAG = "HomeFragment"
@@ -33,6 +41,9 @@ class HomeFragment : Fragment(), TaskAdapter.TaskAdapterInterface {
     private lateinit var taskAdapter: TaskAdapter
     private lateinit var todoItemList: MutableList<TodoData>
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var currentLocation: Location? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +54,8 @@ class HomeFragment : Fragment(), TaskAdapter.TaskAdapterInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        getCurrentLocation()
 
         binding.logoutBtn.setOnClickListener {
             logout()
@@ -75,6 +88,25 @@ class HomeFragment : Fragment(), TaskAdapter.TaskAdapterInterface {
         taskAdapter = TaskAdapter(todoItemList)
         taskAdapter.setListener(this)
         binding.mainRecyclerView.adapter = taskAdapter
+    }
+
+    private fun getCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                currentLocation = location
+                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                val address = addresses?.get(0)
+                val result = "${address?.countryName}, ${address?.adminArea}, ${address?.locality}, ${address?.thoroughfare}"
+                binding.geoPosition.text = result
+            }
+        }
     }
 
     private fun getTaskFromFirebase() {
