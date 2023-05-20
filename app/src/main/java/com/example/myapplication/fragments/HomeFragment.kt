@@ -9,13 +9,17 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
-import com.example.myapplication.databinding.FragmentTaskFormBinding
+import com.example.myapplication.utils.adapter.TaskAdapter
+import com.example.myapplication.utils.models.TodoData
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var navController: NavController
     private lateinit var binding: FragmentHomeBinding
+
+    private lateinit var taskAdapter: TaskAdapter
+    private lateinit var toDoItemList: MutableList<TodoData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,5 +50,9 @@ class HomeFragment : Fragment() {
     private fun init(view: View) {
         mAuth = FirebaseAuth.getInstance()
         navController = Navigation.findNavController(view)
+        toDoItemList = mutableListOf()
+        taskAdapter = TaskAdapter(toDoItemList)
+        taskAdapter.setListener(this)
+        binding.mainRecyclerView.adapter = taskAdapter
     }
 }
