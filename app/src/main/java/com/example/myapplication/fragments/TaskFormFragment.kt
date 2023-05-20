@@ -42,6 +42,7 @@ class TaskFormFragment : Fragment() {
 
         if (taskId != "null" && task != "null") {
             todoData = TodoData(taskId, task)
+            binding.addTodo.text = getString(R.string.edit_task)
             binding.taskTitle.setText(todoData?.task)
         }
 

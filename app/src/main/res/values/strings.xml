@@ -13,6 +13,7 @@
     <string name="goToSignup">Нет аккаунта? Зарегистрироваться</string>
     <string name="goToSignin">Есть аккаунт? Войдите</string>
     <string name="create_task">Создать задачу</string>
+    <string name="edit_task">Редактировать задачу</string>
     <string name="enter_task_title">Введите название задачи</string>
     <string name="todo">Задача</string>
     <string name="enter_task">Введите задачу</string>
