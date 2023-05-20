@@ -14,4 +14,7 @@
     <string name="goToSignin">Do you have account? Sign in</string>
     <string name="create_task">Create task</string>
     <string name="enter_task_title">Enter task title</string>
+    <string name="todo">Task</string>
+    <string name="enter_task">Введите задачу</string>
+    <string name="back">Назад</string>
 </resources>

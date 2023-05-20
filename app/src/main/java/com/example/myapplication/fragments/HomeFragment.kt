@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.myapplication.databinding.FragmentTaskFormBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
@@ -26,9 +27,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.logout.setOnClickListener {
+        binding.logoutBtn.setOnClickListener {
             logout()
+        }
+
+        binding.addTodo.setOnClickListener {
+            navController.navigate(R.id.action_homeFragment_to_taskFormFragment)
         }
 
         init(view)
