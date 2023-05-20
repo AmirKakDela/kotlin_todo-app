@@ -19,4 +19,5 @@
     <string name="enter_task">Введите задачу</string>
     <string name="back">Назад</string>
     <string name="save">Сохранить</string>
+    <string name="splash">SSAU Todo App</string>
 </resources>
