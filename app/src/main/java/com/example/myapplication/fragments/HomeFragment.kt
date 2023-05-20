@@ -103,7 +103,13 @@ class HomeFragment : Fragment(), TaskAdapter.TaskAdapterInterface {
     }
 
     override fun onDeleteItemClicked(todoData: TodoData, position: Int) {
-        TODO("Not yet implemented")
+        database.child(todoData.taskId).removeValue().addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onEditItemClicked(todoData: TodoData, position: Int) {
