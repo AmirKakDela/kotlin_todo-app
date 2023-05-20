@@ -58,7 +58,7 @@ class TaskFormFragment : Fragment() {
             if (todoData == null) {
                 saveTask(todoTitle, binding.taskTitle)
             } else {
-//                updateTask()
+                updateTask(todoData!!, binding.taskTitle)
             }
         }
     }
@@ -85,7 +85,16 @@ class TaskFormFragment : Fragment() {
     }
 
     // todo = todo: Todo
-    fun updateTask(todo: TodoData, todoEdit: TextInputEditText) {
-        TODO("Not yet implemented")
+    fun updateTask(todoData: TodoData, todoEdit: TextInputEditText) {
+        val map = HashMap<String, Any>()
+        map[todoData.taskId] = todoEdit.text.toString()
+        database.updateChildren(map).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.action_taskFormFragment_to_homeFragment)
+            } else {
+                Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

@@ -15,6 +15,7 @@
     <string name="create_task">Create task</string>
     <string name="enter_task_title">Enter task title</string>
     <string name="todo">Task</string>
-    <string name="enter_task">Введите задачу</string>
-    <string name="back">Назад</string>
+    <string name="enter_task">Enter task</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
 </resources>
