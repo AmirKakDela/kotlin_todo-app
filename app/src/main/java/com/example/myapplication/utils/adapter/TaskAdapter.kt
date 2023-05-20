@@ -19,8 +19,7 @@ class TaskAdapter(private val list: MutableList<TodoData>) :
     class TaskViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val binding =
-            TodoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = TodoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TaskViewHolder(binding)
     }
 
@@ -42,12 +41,12 @@ class TaskAdapter(private val list: MutableList<TodoData>) :
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return list.size
     }
 
     interface TaskAdapterInterface {
-        fun onDeleteItemClicked(toDoData: TodoData, position: Int)
-        fun onEditItemClicked(toDoData: TodoData, position: Int)
+        fun onDeleteItemClicked(todoData: TodoData, position: Int)
+        fun onEditItemClicked(todoData: TodoData, position: Int)
     }
 
 }

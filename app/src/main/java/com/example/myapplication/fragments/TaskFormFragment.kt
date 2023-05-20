@@ -18,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase
 
 
 class TaskFormFragment : Fragment() {
-    private lateinit var mAuth: FirebaseAuth
     private lateinit var binding: FragmentTaskFormBinding
     private lateinit var navController: NavController
     private lateinit var database: DatabaseReference
@@ -69,11 +68,10 @@ class TaskFormFragment : Fragment() {
 
 
     private fun init(view: View) {
-        mAuth = FirebaseAuth.getInstance()
-        navController = Navigation.findNavController(view)
         auth = FirebaseAuth.getInstance()
         authId = auth.currentUser!!.uid
         database = FirebaseDatabase.getInstance().reference.child("Tasks").child(authId)
+        navController = Navigation.findNavController(view)
     }
 
     // todo = todo: Todo
